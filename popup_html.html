@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 400px;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 500px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .api-setup {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .api-setup input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .api-setup label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .question-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .question-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 60px;
+            font-size: 14px;
+            font-family: inherit;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .response-area {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .response-content {
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .loading {
+            text-align: center;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .error {
+            color: #ff6b6b;
+            background: rgba(255,107,107,0.1);
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .status {
+            font-size: 12px;
+            opacity: 0.8;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scrollbar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 Article Analyzer</h1>
+    </div>
+
+    <div class="api-setup">
+        <label>Google Gemini API Key:</label>
+        <input type="password" id="apiKey" placeholder="Enter your Gemini API key">
+    </div>
+
+    <div class="status" id="status">Ready to analyze</div>
+
+    <div class="controls">
+        <button id="summarizeBtn">📝 Summarize</button>
+        <button id="extractBtn">📄 Extract Text</button>
+    </div>
+
+    <div class="question-section">
+        <textarea id="questionInput" class="question-input" placeholder="Ask a specific question about this article..."></textarea>
+        <button id="askBtn" style="width: 100%; margin-top: 10px;">🔍 Ask Question</button>
+    </div>
+
+    <div class="response-area scrollbar" id="responseArea">
+        <div class="response-content" id="responseContent">
+            Welcome! Enter your Gemini API key above, then click "Summarize" to get a summary of the current page, or ask specific questions about the content.
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
