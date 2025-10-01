@@ -17,4 +17,3 @@
 - Clicking the summarize button will summarize the current article.
 - Questions can be written in the text box, press "Ask Question" or press Ctrl+Enter.
 - Click "Extract Text" to see what content was extracted from the page.
--
