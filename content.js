@@ -1,3 +1,7 @@
+// Content script that runs on all pages
+// This file is injected into web pages to help extract content
+
+// Function to extract clean article content
 function extractArticleContent() {
     // Remove unwanted elements
     const unwantedSelectors = [
